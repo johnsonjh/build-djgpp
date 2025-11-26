@@ -268,7 +268,7 @@ echo "Building gmp"
 cd $BUILDDIR/gmp-*/
 # On some systems, building gmp will fail if CFLAGS is set.
 # Unset CFLAGS during building gmp.
-env -u CFLAGS ./configure --enable-fat --prefix=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
+env -u CFLAGS env CFLAGS="-std=gnu99" ./configure --enable-fat --prefix=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
 ${MAKE} all || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
